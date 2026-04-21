@@ -13,6 +13,7 @@ import AdminFieldManager from './components/AdminFieldManager'
 import StockCount from './components/StockCount'
 import InvoiceScanner from './components/InvoiceScanner'
 import AIInsights from './components/AIInsights'
+import BulkUpload from './components/BulkUpload'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="/invoice-scanner" element={<InvoiceScanner />} />
           <Route path="/admin" element={<AdminFieldManager />} />
           <Route path="/ai-insights" element={<AIInsights />} />
+          <Route path="/bulk-upload" element={<BulkUpload />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Layout>

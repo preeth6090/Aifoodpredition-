@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import {
   LayoutDashboard, ChefHat, Package, BarChart3, ShoppingCart,
   Receipt, Truck, ClipboardList, ScanLine, Settings, Bell,
-  ChevronLeft, ChevronRight, TrendingUp, X, LogOut, Sparkles
+  ChevronLeft, ChevronRight, TrendingUp, X, LogOut, Sparkles, Upload
 } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
 
@@ -19,6 +19,7 @@ const NAV_ITEMS = [
   { path: '/invoice-scanner',  label: 'Invoice Scanner',   icon: ScanLine },
   { path: '/admin',            label: 'Admin Fields',      icon: Settings },
   { path: '/ai-insights',      label: 'AI Insights',       icon: Sparkles },
+  { path: '/bulk-upload',      label: 'Bulk Upload',       icon: Upload },
 ]
 
 export default function Layout({ children }) {
