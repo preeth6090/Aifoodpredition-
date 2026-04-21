@@ -254,10 +254,10 @@ export default function BulkUpload() {
       {/* Quick Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {[
-          { label: 'Template Ingredients', value: TEMPLATE_INGREDIENTS.length, icon: Package,    color: 'text-gold-600'  },
-          { label: 'Template Recipes',     value: TEMPLATE_RECIPES.length,     icon: ChefHat,   color: 'text-green-600' },
-          { label: 'South Indian Dishes',  value: TEMPLATE_RECIPES.filter(r => r.category === 'South Indian').length, icon: ChefHat, color: 'text-amber-600' },
-          { label: 'North Indian Dishes',  value: TEMPLATE_RECIPES.filter(r => r.category.startsWith('North Indian')).length, icon: ChefHat, color: 'text-blue-600' },
+          { label: 'Template Ingredients', value: TEMPLATE_INGREDIENTS.length,  icon: Package,  color: 'text-gold-600'  },
+          { label: 'Total Recipes',        value: TEMPLATE_RECIPES.length,      icon: ChefHat,  color: 'text-green-600' },
+          { label: 'Karnataka + S.Indian', value: TEMPLATE_RECIPES.filter(r => r.category === 'South Indian' || r.category === 'Karnataka').length, icon: ChefHat, color: 'text-amber-600' },
+          { label: 'N.Indian + Indo-Chinese', value: TEMPLATE_RECIPES.filter(r => r.category.startsWith('North Indian') || r.category === 'Indo-Chinese').length, icon: ChefHat, color: 'text-blue-600' },
         ].map(({ label, value, icon: Icon, color }) => (
           <div key={label} className="gold-card p-4 flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gold-100 flex items-center justify-center">
