@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell
 } from 'recharts'
-import { TrendingDown, TrendingUp, AlertTriangle, DollarSign, Filter } from 'lucide-react'
+import { TrendingDown, TrendingUp, AlertTriangle, Filter } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
 
 const CustomTooltip = ({ active, payload, label }) => {
@@ -68,7 +68,7 @@ export default function StockVariance() {
             <TrendingDown size={16} className="text-red-500" />
             <span className="text-xs font-semibold text-executive-muted uppercase tracking-wider">Total Shortage</span>
           </div>
-          <p className="text-2xl font-serif font-bold text-red-600">${totals.totalShortage.toFixed(2)}</p>
+          <p className="text-2xl font-serif font-bold text-red-600">₹{totals.totalShortage.toFixed(2)}</p>
           <p className="text-xs text-executive-muted">Theoretical &gt; Physical (Loss)</p>
         </div>
         <div className="kpi-card border-l-4 border-l-blue-400">
@@ -76,7 +76,7 @@ export default function StockVariance() {
             <TrendingUp size={16} className="text-blue-500" />
             <span className="text-xs font-semibold text-executive-muted uppercase tracking-wider">Total Surplus</span>
           </div>
-          <p className="text-2xl font-serif font-bold text-blue-600">${totals.totalSurplus.toFixed(2)}</p>
+          <p className="text-2xl font-serif font-bold text-blue-600">₹{totals.totalSurplus.toFixed(2)}</p>
           <p className="text-xs text-executive-muted">Physical &gt; Theoretical (Over-count)</p>
         </div>
         <div className="kpi-card border-l-4 border-l-amber-400">

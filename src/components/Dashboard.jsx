@@ -5,7 +5,7 @@ import {
   LineChart, Line, PieChart, Pie, Cell, Legend
 } from 'recharts'
 import {
-  DollarSign, AlertTriangle, TrendingUp, ShoppingCart, Package,
+  IndianRupee, AlertTriangle, TrendingUp, ShoppingCart, Package,
   ArrowRight, CheckCircle, Clock, Zap
 } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
@@ -76,9 +76,9 @@ export default function Dashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <KPICard
           title="Total Stock Value"
-          value={`$${stats.totalStockValue.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}
+          value={`₹${stats.totalStockValue.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`}
           subtitle="Current inventory value"
-          icon={DollarSign}
+          icon={IndianRupee}
           iconColor="bg-gold-100 text-gold-700"
           trend={2.4}
           onClick={() => navigate('/ingredients')}
@@ -93,7 +93,7 @@ export default function Dashboard() {
         />
         <KPICard
           title="Today's Revenue"
-          value={`$${stats.todayRevenue.toFixed(2)}`}
+          value={`₹${stats.todayRevenue.toFixed(2)}`}
           subtitle={`Food Cost: ${stats.foodCostPct.toFixed(1)}%`}
           icon={TrendingUp}
           iconColor="bg-green-100 text-green-700"
@@ -183,7 +183,7 @@ export default function Dashboard() {
                   <Cell key={i} fill={GOLD_PALETTE[i % GOLD_PALETTE.length]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(v) => `$${v.toFixed(2)}`} />
+              <Tooltip formatter={(v) => `₹${v.toFixed(2)}`} />
             </PieChart>
           </ResponsiveContainer>
           <div className="mt-2 space-y-1">
@@ -193,7 +193,7 @@ export default function Dashboard() {
                   <div className="w-2.5 h-2.5 rounded-sm" style={{ background: GOLD_PALETTE[i % GOLD_PALETTE.length] }} />
                   <span className="text-executive-muted">{d.name}</span>
                 </div>
-                <span className="font-medium text-executive-dark">${d.value.toFixed(0)}</span>
+                <span className="font-medium text-executive-dark">₹{d.value.toFixed(0)}</span>
               </div>
             ))}
           </div>

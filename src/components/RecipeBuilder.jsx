@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react'
-import { Plus, Trash2, Edit3, ChefHat, X, Save, Search, DollarSign } from 'lucide-react'
+import { Plus, Trash2, Edit3, ChefHat, X, Save, Search } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
 
 const CATEGORIES = ['Burgers', 'Sides', 'Beverages', 'Salads', 'Desserts', 'Mains', 'Starters']
@@ -63,7 +63,7 @@ function RecipeModal({ recipe, onClose, onSave, ingredients, calcRecipeCost }) {
               </select>
             </div>
             <div>
-              <label className="label-gold">Selling Price ($)</label>
+              <label className="label-gold">Selling Price (₹)</label>
               <input
                 className="input-gold"
                 type="number" step="0.01" min="0"
@@ -76,7 +76,7 @@ function RecipeModal({ recipe, onClose, onSave, ingredients, calcRecipeCost }) {
               <div className="p-3 bg-gold-50 rounded-xl border border-gold-200">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-executive-muted">Recipe Cost</span>
-                  <span className="font-bold text-executive-dark">${recipeCost.toFixed(3)}</span>
+                  <span className="font-bold text-executive-dark">₹{recipeCost.toFixed(3)}</span>
                 </div>
                 <div className="flex items-center justify-between text-xs mt-1">
                   <span className="text-executive-muted">Gross Margin</span>
@@ -270,11 +270,11 @@ export default function RecipeBuilder() {
               <div className="grid grid-cols-3 gap-2">
                 <div className="text-center">
                   <p className="text-[10px] text-executive-muted uppercase tracking-wider">Cost</p>
-                  <p className="font-bold text-executive-dark text-sm">${cost.toFixed(2)}</p>
+                  <p className="font-bold text-executive-dark text-sm">₹{cost.toFixed(2)}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-[10px] text-executive-muted uppercase tracking-wider">Price</p>
-                  <p className="font-bold text-executive-dark text-sm">${recipe.sellingPrice?.toFixed(2) || '—'}</p>
+                  <p className="font-bold text-executive-dark text-sm">₹{recipe.sellingPrice?.toFixed(2) || '—'}</p>
                 </div>
                 <div className="text-center">
                   <p className="text-[10px] text-executive-muted uppercase tracking-wider">Margin</p>
