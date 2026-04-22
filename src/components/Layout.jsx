@@ -4,13 +4,15 @@ import {
   LayoutDashboard, ChefHat, Package, BarChart3, ShoppingCart,
   Receipt, Truck, ClipboardList, ScanLine, Settings, Bell,
   ChevronLeft, ChevronRight, TrendingUp, X, Sparkles, Upload,
-  Palette, CreditCard, Check
+  Palette, CreditCard, Check, UtensilsCrossed, ChefHat as KDS
 } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
 import { useTheme, THEMES } from '../context/ThemeContext'
 
 const NAV_ITEMS = [
   { path: '/',                label: 'Dashboard',        icon: LayoutDashboard },
+  { path: '/tables',          label: 'Table Management', icon: UtensilsCrossed },
+  { path: '/kitchen',         label: 'Kitchen Display',  icon: KDS },
   { path: '/sales',           label: 'Record Sales',     icon: Receipt },
   { path: '/recipes',         label: 'Recipe Builder',   icon: ChefHat },
   { path: '/ingredients',     label: 'Ingredients',      icon: Package },
