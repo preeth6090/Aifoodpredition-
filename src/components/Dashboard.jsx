@@ -6,7 +6,7 @@ import {
 } from 'recharts'
 import {
   IndianRupee, AlertTriangle, TrendingUp, ShoppingCart, Package,
-  ArrowRight, CheckCircle, Clock, Zap
+  ArrowRight, CheckCircle, Clock, Zap, CalendarClock
 } from 'lucide-react'
 import { useInventory } from '../context/InventoryContext'
 
@@ -48,10 +48,11 @@ function KPICard({ title, value, subtitle, icon: Icon, iconColor, trend, onClick
 }
 
 export default function Dashboard() {
-  const { ingredients, getDashboardStats, generatePurchaseOrder, notifications } = useInventory()
+  const { ingredients, getDashboardStats, generatePurchaseOrder, getExpiringItems, notifications } = useInventory()
   const navigate = useNavigate()
 
-  const stats = useMemo(() => getDashboardStats(), [getDashboardStats])
+  const stats         = useMemo(() => getDashboardStats(), [getDashboardStats])
+  const expiringItems = useMemo(() => getExpiringItems ? getExpiringItems(30) : [], [getExpiringItems])
 
   const lowStockItems = ingredients.filter(i => i.currentStock <= i.parLevel)
 
@@ -136,6 +137,60 @@ export default function Dashboard() {
               <Zap size={14} />
               Auto-Generate POs
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Expiring Soon */}
+      {expiringItems.length > 0 && (
+        <div className="gold-card overflow-hidden">
+          <div className="section-header px-5 pt-5 pb-0">
+            <div className="flex items-center gap-2">
+              <CalendarClock size={16} className="text-amber-600" />
+              <h2 className="font-serif font-semibold text-executive-dark">Expiring Soon</h2>
+            </div>
+            <span className="badge-amber">{expiringItems.length} items</span>
+          </div>
+          <div className="overflow-x-auto mt-4">
+            <table className="table-gold">
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>Batch / Lot</th>
+                  <th>Mfg Date</th>
+                  <th>Expiry Date</th>
+                  <th>Days Left</th>
+                  <th>Stock</th>
+                  <th>Stock Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {expiringItems.map(item => {
+                  const isCritical = item.daysUntilExpiry <= 7
+                  const isExpired  = item.daysUntilExpiry < 0
+                  const rowCls     = isExpired ? 'bg-red-50' : isCritical ? 'bg-red-50/50' : 'bg-amber-50/40'
+                  return (
+                    <tr key={item.id} className={rowCls}>
+                      <td className="font-medium text-executive-dark">{item.name}</td>
+                      <td className="text-xs text-executive-muted font-mono">{item.batchNo || '—'}</td>
+                      <td className="text-xs text-executive-muted">{item.mfgDate || '—'}</td>
+                      <td className="text-xs font-semibold">{item.expiryDate}</td>
+                      <td>
+                        {isExpired ? (
+                          <span className="badge-red">Expired</span>
+                        ) : isCritical ? (
+                          <span className="badge-red">{item.daysUntilExpiry}d left</span>
+                        ) : (
+                          <span className="badge-amber">{item.daysUntilExpiry}d left</span>
+                        )}
+                      </td>
+                      <td className="text-executive-muted">{item.currentStock} {item.unit}</td>
+                      <td className="font-semibold text-executive-dark">₹{(item.currentStock * item.costPerUnit).toFixed(2)}</td>
+                    </tr>
+                  )
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
