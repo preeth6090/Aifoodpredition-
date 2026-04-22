@@ -137,9 +137,9 @@ export default function SalesRecorder() {
                   </div>
                   <div className="flex items-center justify-between mt-3">
                     <div className="text-xs text-executive-muted">
-                      Cost: ${cost.toFixed(2)} | Margin: {margin.toFixed(0)}%
+                      Cost: ₹{cost.toFixed(2)} | Margin: {margin.toFixed(0)}%
                     </div>
-                    <span className="font-serif font-bold text-gold-700 text-lg">${recipe.sellingPrice?.toFixed(2)}</span>
+                    <span className="font-serif font-bold text-gold-700 text-lg">₹{recipe.sellingPrice?.toFixed(2)}</span>
                   </div>
                   <div className="text-xs text-executive-muted mt-1 flex flex-wrap gap-1">
                     {recipe.ingredients.map((ri, i) => {
@@ -176,7 +176,7 @@ export default function SalesRecorder() {
                     <div key={recipeId} className="flex items-center gap-2 py-2 border-b border-gray-100">
                       <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-executive-dark truncate">{r.name}</p>
-                        <p className="text-xs text-executive-muted">${(r.sellingPrice * qty).toFixed(2)}</p>
+                        <p className="text-xs text-executive-muted">₹{(r.sellingPrice * qty).toFixed(2)}</p>
                       </div>
                       <div className="flex items-center gap-1">
                         <button onClick={() => updateQty(recipeId, -1)} className="w-6 h-6 rounded-full border border-gray-200 flex items-center justify-center hover:border-gold-400 transition-colors">
@@ -212,7 +212,7 @@ export default function SalesRecorder() {
               <div className="border-t border-gold-100 pt-3 mt-2 space-y-1.5">
                 <div className="flex justify-between text-xs text-executive-muted">
                   <span>Food Cost</span>
-                  <span>${cartCost.toFixed(2)}</span>
+                  <span>₹{cartCost.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-xs text-executive-muted">
                   <span>Gross Margin</span>
@@ -220,7 +220,7 @@ export default function SalesRecorder() {
                 </div>
                 <div className="flex justify-between font-bold text-executive-dark">
                   <span>Total Revenue</span>
-                  <span className="text-gold-700 font-serif text-lg">${cartTotal.toFixed(2)}</span>
+                  <span className="text-gold-700 font-serif text-lg">₹{cartTotal.toFixed(2)}</span>
                 </div>
               </div>
             )}
@@ -266,7 +266,7 @@ export default function SalesRecorder() {
                     <td className="font-medium text-executive-dark">{r?.name || 'Unknown'}</td>
                     <td>{sale.quantity}</td>
                     <td className="font-semibold text-gold-700">
-                      ${r ? (r.sellingPrice * sale.quantity).toFixed(2) : '—'}
+                      ₹{r ? (r.sellingPrice * sale.quantity).toFixed(2) : '—'}
                     </td>
                     <td className="text-executive-muted">{sale.staff}</td>
                   </tr>

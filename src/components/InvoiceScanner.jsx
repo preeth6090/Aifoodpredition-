@@ -2,17 +2,17 @@ import React, { useState, useRef, useCallback } from 'react'
 import { Upload, ScanLine, FileText, Check, Trash2, Eye, X, Download, Tag } from 'lucide-react'
 
 const MOCK_SCANNED = [
-  { id: 1, fileName: 'invoice_prime_meats_apr19.pdf', vendor: 'Prime Meats Ltd.', date: '2026-04-19', total: '$318.50', items: 4, status: 'processed', confidence: 97 },
-  { id: 2, fileName: 'golden_bakery_weekly.jpg',      vendor: 'Golden Bakery Co.',  date: '2026-04-18', total: '$142.00', items: 2, status: 'processed', confidence: 93 },
-  { id: 3, fileName: 'produce_fresh_farm_apr17.pdf',  vendor: 'Fresh Farm Produce', date: '2026-04-17', total: '$89.60',  items: 6, status: 'review',    confidence: 78 },
+  { id: 1, fileName: 'invoice_poultry_apr19.pdf',     vendor: 'Prime Poultry Ltd.', date: '2026-04-19', total: '₹24,500', items: 4, status: 'processed', confidence: 97 },
+  { id: 2, fileName: 'golden_bakery_weekly.jpg',      vendor: 'Golden Bakery Co.',  date: '2026-04-18', total: '₹8,250',  items: 2, status: 'processed', confidence: 93 },
+  { id: 3, fileName: 'produce_fresh_farm_apr17.pdf',  vendor: 'Fresh Farm Produce', date: '2026-04-17', total: '₹5,800',  items: 6, status: 'review',    confidence: 78 },
 ]
 
 function ScannedInvoiceModal({ invoice, onClose }) {
   const mockLineItems = [
-    { description: 'Burger Bun × 200',   qty: 200, unit: 'pcs', unitPrice: 0.50, total: 100.00 },
-    { description: 'Beef Patty × 50',    qty: 50,  unit: 'pcs', unitPrice: 2.50, total: 125.00 },
-    { description: 'Lettuce 10kg',        qty: 10,  unit: 'kg',  unitPrice: 1.20, total: 12.00  },
-    { description: 'Delivery Charge',     qty: 1,   unit: '-',   unitPrice: 8.50, total: 8.50   },
+    { description: 'Burger Bun × 200',    qty: 200, unit: 'pcs', unitPrice: 15,  total: 3000 },
+    { description: 'Chicken Patty × 50',  qty: 50,  unit: 'pcs', unitPrice: 110, total: 5500 },
+    { description: 'Lettuce 10kg',         qty: 10,  unit: 'kg',  unitPrice: 60,  total: 600  },
+    { description: 'Delivery Charge',      qty: 1,   unit: '-',   unitPrice: 250, total: 250  },
   ]
 
   return (
@@ -56,8 +56,8 @@ function ScannedInvoiceModal({ invoice, onClose }) {
                     <td className="font-medium">{item.description}</td>
                     <td>{item.qty}</td>
                     <td className="text-executive-muted">{item.unit}</td>
-                    <td>${item.unitPrice.toFixed(2)}</td>
-                    <td className="font-semibold">${item.total.toFixed(2)}</td>
+                    <td>₹{item.unitPrice.toFixed(2)}</td>
+                    <td className="font-semibold">₹{item.total.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -119,7 +119,7 @@ export default function InvoiceScanner() {
         fileName: file.name,
         vendor: 'Auto-Detected Vendor',
         date: new Date().toISOString().split('T')[0],
-        total: `$${(Math.random() * 500 + 50).toFixed(2)}`,
+        total: `₹${(Math.random() * 500 + 50).toFixed(2)}`,
         items: Math.floor(Math.random() * 8) + 2,
         status: 'review',
         confidence: Math.floor(Math.random() * 20) + 75,

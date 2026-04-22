@@ -46,7 +46,7 @@ function IngredientModal({ ingredient, onClose, onSave, vendors }) {
               </select>
             </div>
             <div>
-              <label className="label-gold">Cost Per Unit ($)</label>
+              <label className="label-gold">Cost Per Unit (₹)</label>
               <input className="input-gold" type="number" step="0.001" min="0" placeholder="0.000" value={form.costPerUnit} onChange={e => set('costPerUnit', parseFloat(e.target.value) || '')} />
             </div>
             <div>
@@ -130,7 +130,7 @@ export default function IngredientManager() {
           <p className="text-xs text-executive-muted mt-1">Below Par Level</p>
         </div>
         <div className="gold-card p-4 text-center">
-          <p className="text-2xl font-serif font-bold text-executive-dark">${totalValue.toFixed(0)}</p>
+          <p className="text-2xl font-serif font-bold text-executive-dark">₹{totalValue.toFixed(0)}</p>
           <p className="text-xs text-executive-muted mt-1">Total Stock Value</p>
         </div>
       </div>
@@ -202,8 +202,8 @@ export default function IngredientManager() {
                       </div>
                     </td>
                     <td className="text-executive-muted">{ing.parLevel}</td>
-                    <td>${ing.costPerUnit.toFixed(3)}</td>
-                    <td className="font-semibold text-executive-dark">${stockValue.toFixed(2)}</td>
+                    <td>₹{ing.costPerUnit.toFixed(3)}</td>
+                    <td className="font-semibold text-executive-dark">₹{stockValue.toFixed(2)}</td>
                     <td className="text-executive-muted text-xs">{vendor?.name || '—'}</td>
                     <td>
                       <span className={isLow ? 'badge-red' : 'badge-green'}>

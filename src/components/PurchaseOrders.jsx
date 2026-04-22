@@ -67,8 +67,8 @@ function PODetail({ po, onClose, onApprove, onReceive, onDelete, vendors, ingred
                       <td className="font-medium">{ing?.name || 'Unknown'}</td>
                       <td>{item.quantity}</td>
                       <td className="text-executive-muted">{ing?.unit || '—'}</td>
-                      <td>${item.unitCost.toFixed(3)}</td>
-                      <td className="font-semibold">${(item.quantity * item.unitCost).toFixed(2)}</td>
+                      <td>₹{item.unitCost.toFixed(3)}</td>
+                      <td className="font-semibold">₹{(item.quantity * item.unitCost).toFixed(2)}</td>
                     </tr>
                   )
                 })}
@@ -76,7 +76,7 @@ function PODetail({ po, onClose, onApprove, onReceive, onDelete, vendors, ingred
               <tfoot>
                 <tr className="bg-gold-50 border-t-2 border-gold-200">
                   <td colSpan={4} className="px-4 py-3 font-bold text-executive-dark">Total</td>
-                  <td className="px-4 py-3 font-bold text-gold-700">${total.toFixed(2)}</td>
+                  <td className="px-4 py-3 font-bold text-gold-700">₹{total.toFixed(2)}</td>
                 </tr>
               </tfoot>
             </table>
@@ -182,7 +182,7 @@ function NewPOModal({ onClose, onSave, vendors, ingredients }) {
 
           <div className="flex justify-between items-center p-3 bg-gold-50 rounded-xl border border-gold-200">
             <span className="font-semibold text-executive-dark text-sm">Order Total</span>
-            <span className="font-bold text-gold-700 text-lg">${total.toFixed(2)}</span>
+            <span className="font-bold text-gold-700 text-lg">₹{total.toFixed(2)}</span>
           </div>
         </div>
 
@@ -258,7 +258,7 @@ export default function PurchaseOrders() {
           { label: 'Total POs',     value: totals.total,    cls: 'text-executive-dark' },
           { label: 'Pending',       value: totals.pending,  cls: 'text-amber-600' },
           { label: 'Approved',      value: totals.approved, cls: 'text-blue-600' },
-          { label: 'Total Value',   value: `$${totals.value.toFixed(2)}`, cls: 'text-gold-700' },
+          { label: 'Total Value',   value: `₹${totals.value.toFixed(2)}`, cls: 'text-gold-700' },
         ].map(s => (
           <div key={s.label} className="kpi-card">
             <p className="text-xs text-executive-muted uppercase tracking-wider font-semibold">{s.label}</p>
@@ -312,7 +312,7 @@ export default function PurchaseOrders() {
                       </div>
                     </td>
                     <td>{po.items.length} item{po.items.length !== 1 ? 's' : ''}</td>
-                    <td className="font-semibold text-gold-700">${total.toFixed(2)}</td>
+                    <td className="font-semibold text-gold-700">₹{total.toFixed(2)}</td>
                     <td className="text-executive-muted text-xs">{po.createdAt}</td>
                     <td><span className={cfg.cls}>{cfg.label}</span></td>
                     <td>

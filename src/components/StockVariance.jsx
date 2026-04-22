@@ -213,7 +213,7 @@ export default function StockVariance() {
                       </span>
                     </td>
                     <td className={`font-semibold ${d.variance > 0 ? 'text-red-600' : 'text-executive-dark'}`}>
-                      ${d.varianceCost.toFixed(2)}
+                      ₹{d.varianceCost.toFixed(2)}
                     </td>
                     <td><span className={riskCls}>{risk}</span></td>
                   </tr>
@@ -224,7 +224,7 @@ export default function StockVariance() {
               <tr className="bg-gold-50 border-t-2 border-gold-200">
                 <td colSpan={6} className="px-4 py-3 font-semibold text-executive-dark">Total Variance Cost</td>
                 <td className="px-4 py-3 font-bold text-red-600">
-                  ${filtered.filter(d => d.variance > 0).reduce((s, d) => s + d.varianceCost, 0).toFixed(2)}
+                  ₹{filtered.filter(d => d.variance > 0).reduce((s, d) => s + d.varianceCost, 0).toFixed(2)}
                 </td>
                 <td />
               </tr>
