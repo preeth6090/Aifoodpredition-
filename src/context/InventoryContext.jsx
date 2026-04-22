@@ -3,16 +3,16 @@ import React, { createContext, useContext, useState, useCallback, useEffect } fr
 const InventoryContext = createContext(null)
 
 const INITIAL_INGREDIENTS = [
-  { id: 1, name: 'Burger Bun',      unit: 'pcs', currentStock: 150, parLevel: 50,  costPerUnit: 15,  category: 'Bakery',     vendorId: 1, lastUpdated: '2026-04-19', sku: 'BKR-001' },
-  { id: 2, name: 'Chicken Patty',   unit: 'pcs', currentStock: 80,  parLevel: 40,  costPerUnit: 110, category: 'Meat',       vendorId: 2, lastUpdated: '2026-04-19', sku: 'MT-001' },
-  { id: 3, name: 'Lettuce',         unit: 'kg',  currentStock: 5.2, parLevel: 3,   costPerUnit: 60,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-19', sku: 'PRD-001' },
-  { id: 4, name: 'Tomato',          unit: 'kg',  currentStock: 8.0, parLevel: 4,   costPerUnit: 40,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-18', sku: 'PRD-002' },
-  { id: 5, name: 'Cheese Slice',    unit: 'pcs', currentStock: 120, parLevel: 60,  costPerUnit: 20,  category: 'Dairy',      vendorId: 4, lastUpdated: '2026-04-19', sku: 'DRY-001' },
-  { id: 6, name: 'Coca-Cola 330ml', unit: 'cans',currentStock: 200, parLevel: 100, costPerUnit: 45,  category: 'Beverages',  vendorId: 5, lastUpdated: '2026-04-19', sku: 'BVG-001' },
-  { id: 7, name: 'Potato (Fries)',  unit: 'kg',  currentStock: 25,  parLevel: 15,  costPerUnit: 30,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-18', sku: 'PRD-003' },
-  { id: 8, name: 'Cooking Oil',     unit: 'L',   currentStock: 10,  parLevel: 5,   costPerUnit: 180, category: 'Pantry',     vendorId: 6, lastUpdated: '2026-04-17', sku: 'PNT-001' },
-  { id: 9, name: 'Chicken Breast',  unit: 'kg',  currentStock: 12,  parLevel: 8,   costPerUnit: 320, category: 'Meat',       vendorId: 2, lastUpdated: '2026-04-19', sku: 'MT-002' },
-  { id:10, name: 'Green Chutney',   unit: 'L',   currentStock: 3.5, parLevel: 2,   costPerUnit: 120, category: 'Condiments', vendorId: 6, lastUpdated: '2026-04-16', sku: 'CND-001' },
+  { id: 1, name: 'Burger Bun',      unit: 'pcs', currentStock: 150, parLevel: 50,  costPerUnit: 15,  category: 'Bakery',     vendorId: 1, lastUpdated: '2026-04-22', sku: 'BKR-001', packType: 'Bag',    packSize: 50,  packUnit: 'pcs', packPrice: 750,   mfgDate: '2026-04-20', expiryDate: '2026-04-27', batchNo: 'BKR-2604-A', fssaiNo: '10019022001', tolerance: 3 },
+  { id: 2, name: 'Chicken Patty',   unit: 'pcs', currentStock: 80,  parLevel: 40,  costPerUnit: 110, category: 'Meat',       vendorId: 2, lastUpdated: '2026-04-22', sku: 'MT-001',  packType: 'Tray',   packSize: 10,  packUnit: 'pcs', packPrice: 1100,  mfgDate: '2026-04-21', expiryDate: '2026-04-26', batchNo: 'MT-2604-B',  fssaiNo: '10019022002', tolerance: 2 },
+  { id: 3, name: 'Lettuce',         unit: 'kg',  currentStock: 5.2, parLevel: 3,   costPerUnit: 60,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-22', sku: 'PRD-001', packType: 'Carton', packSize: 5,   packUnit: 'kg',  packPrice: 300,   mfgDate: '2026-04-22', expiryDate: '2026-04-28', batchNo: 'PRD-2604-A', fssaiNo: '10019022003', tolerance: 5 },
+  { id: 4, name: 'Tomato',          unit: 'kg',  currentStock: 8.0, parLevel: 4,   costPerUnit: 40,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-22', sku: 'PRD-002', packType: 'Carton', packSize: 10,  packUnit: 'kg',  packPrice: 400,   mfgDate: '2026-04-22', expiryDate: '2026-05-05', batchNo: 'PRD-2604-B', fssaiNo: '10019022003', tolerance: 5 },
+  { id: 5, name: 'Cheese Slice',    unit: 'pcs', currentStock: 120, parLevel: 60,  costPerUnit: 20,  category: 'Dairy',      vendorId: 4, lastUpdated: '2026-04-22', sku: 'DRY-001', packType: 'Packet', packSize: 20,  packUnit: 'pcs', packPrice: 400,   mfgDate: '2026-04-15', expiryDate: '2026-05-15', batchNo: 'DRY-2604-A', fssaiNo: '10019022004', tolerance: 2 },
+  { id: 6, name: 'Coca-Cola 330ml', unit: 'cans',currentStock: 200, parLevel: 100, costPerUnit: 45,  category: 'Beverages',  vendorId: 5, lastUpdated: '2026-04-22', sku: 'BVG-001', packType: 'Carton', packSize: 24,  packUnit: 'cans',packPrice: 1080,  mfgDate: '2026-01-10', expiryDate: '2026-12-31', batchNo: 'BVG-2601-A', fssaiNo: '10019022005', tolerance: 0 },
+  { id: 7, name: 'Potato (Fries)',  unit: 'kg',  currentStock: 25,  parLevel: 15,  costPerUnit: 30,  category: 'Produce',    vendorId: 3, lastUpdated: '2026-04-22', sku: 'PRD-003', packType: 'Bag',    packSize: 25,  packUnit: 'kg',  packPrice: 750,   mfgDate: '2026-04-20', expiryDate: '2026-05-10', batchNo: 'PRD-2604-C', fssaiNo: '10019022003', tolerance: 3 },
+  { id: 8, name: 'Cooking Oil',     unit: 'L',   currentStock: 10,  parLevel: 5,   costPerUnit: 180, category: 'Pantry',     vendorId: 6, lastUpdated: '2026-04-22', sku: 'PNT-001', packType: 'Tin',    packSize: 5,   packUnit: 'L',   packPrice: 900,   mfgDate: '2026-02-01', expiryDate: '2027-02-01', batchNo: 'PNT-2602-A', fssaiNo: '10019022006', tolerance: 2 },
+  { id: 9, name: 'Chicken Breast',  unit: 'kg',  currentStock: 12,  parLevel: 8,   costPerUnit: 320, category: 'Meat',       vendorId: 2, lastUpdated: '2026-04-22', sku: 'MT-002',  packType: 'Tray',   packSize: 1,   packUnit: 'kg',  packPrice: 320,   mfgDate: '2026-04-22', expiryDate: '2026-04-25', batchNo: 'MT-2604-C',  fssaiNo: '10019022002', tolerance: 2 },
+  { id:10, name: 'Green Chutney',   unit: 'L',   currentStock: 3.5, parLevel: 2,   costPerUnit: 120, category: 'Condiments', vendorId: 6, lastUpdated: '2026-04-22', sku: 'CND-001', packType: 'Bottle', packSize: 0.5, packUnit: 'L',   packPrice: 60,    mfgDate: '2026-04-10', expiryDate: '2026-05-10', batchNo: 'CND-2604-A', fssaiNo: '10019022006', tolerance: 2 },
 ]
 
 const INITIAL_RECIPES = [
@@ -240,6 +240,7 @@ export function InventoryProvider({ children }) {
   const [stockCounts,    setStockCounts]    = useState(INITIAL_STOCK_COUNTS)
   const [customFields,   setCustomFields]   = useState(INITIAL_CUSTOM_FIELDS)
   const [vendorPrices,   setVendorPrices]   = useState(INITIAL_VENDOR_PRICES)
+  const [payments,       setPayments]       = useState([])
   const [notifications,  setNotifications]  = useState([
     { id: 1, type: 'warning', message: 'Tomato stock not updated in 26 hours',  time: '2h ago', read: false },
     { id: 2, type: 'alert',   message: 'Lettuce below par level — PO suggested', time: '3h ago', read: false },
@@ -359,16 +360,35 @@ export function InventoryProvider({ children }) {
     setPurchaseOrders(prev => prev.filter(po => po.id !== poId))
   }, [])
 
-  const receiveOrder = useCallback((poId) => {
+  // receivedItems: [{ ingredientId, receivedQty, unitCost, mfgDate, expiryDate, batchNo, fssaiNo, itemStatus }]
+  const receiveOrder = useCallback((poId, receivedItems) => {
     const po = purchaseOrders.find(p => p.id === poId)
     if (!po) return
+
+    const today = new Date().toISOString().split('T')[0]
+    const itemsToUse = receivedItems || po.items.map(i => ({ ingredientId: i.ingredientId, receivedQty: i.quantity, unitCost: i.unitCost, itemStatus: 'received' }))
+
     setIngredients(prev => prev.map(ing => {
-      const item = po.items.find(i => i.ingredientId === ing.id)
-      if (!item) return ing
-      return { ...ing, currentStock: parseFloat((ing.currentStock + item.quantity).toFixed(3)), lastUpdated: new Date().toISOString().split('T')[0] }
+      const item = itemsToUse.find(i => i.ingredientId === ing.id)
+      if (!item || item.itemStatus === 'rejected' || item.receivedQty === 0) return ing
+      const newStock = parseFloat((ing.currentStock + item.receivedQty).toFixed(3))
+      const updates = { currentStock: newStock, lastUpdated: today }
+      if (item.unitCost)   updates.costPerUnit = item.unitCost
+      if (item.mfgDate)    updates.mfgDate    = item.mfgDate
+      if (item.expiryDate) updates.expiryDate  = item.expiryDate
+      if (item.batchNo)    updates.batchNo     = item.batchNo
+      if (item.fssaiNo)    updates.fssaiNo     = item.fssaiNo
+      return { ...ing, ...updates }
     }))
-    setPurchaseOrders(prev => prev.map(po => po.id === poId ? { ...po, status: 'received' } : po))
-    addNotification('info', `Order ${poId} received. Stock updated.`)
+
+    const allReceived  = itemsToUse.every(i => i.itemStatus === 'received')
+    const allRejected  = itemsToUse.every(i => i.itemStatus === 'rejected')
+    const newStatus    = allRejected ? 'rejected' : allReceived ? 'received' : 'partial'
+
+    setPurchaseOrders(prev => prev.map(p => p.id === poId ? {
+      ...p, status: newStatus, receivedItems: itemsToUse, receivedAt: today,
+    } : p))
+    addNotification('info', `Order ${poId} ${newStatus}. Stock updated.`)
   }, [purchaseOrders, addNotification])
 
   const submitStockCount = useCallback((countData) => {
@@ -411,6 +431,19 @@ export function InventoryProvider({ children }) {
       })
       .sort((a, b) => a.totalCost - b.totalCost)
   }, [vendorPrices, vendors])
+
+  const markPaymentPaid = useCallback((poId, paidBy = 'Admin', notes = '') => {
+    setPayments(prev => {
+      const exists = prev.find(p => p.poId === poId)
+      const entry  = { poId, paidAt: new Date().toISOString(), paidBy, notes }
+      return exists ? prev.map(p => p.poId === poId ? entry : p) : [...prev, entry]
+    })
+    addNotification('info', `Payment recorded for ${poId}`)
+  }, [addNotification])
+
+  const unmarkPaymentPaid = useCallback((poId) => {
+    setPayments(prev => prev.filter(p => p.poId !== poId))
+  }, [])
 
   const addCustomField = useCallback((data) => {
     setCustomFields(prev => [...prev, { ...data, id: Date.now() }])
@@ -464,14 +497,28 @@ export function InventoryProvider({ children }) {
     return { totalStockValue, itemsBelowPar, todayRevenue, foodCostPct, totalVarianceCost, salesByRecipe, pendingPOs }
   }, [ingredients, sales, recipes, purchaseOrders, getVarianceData])
 
+  const getExpiringItems = useCallback((days = 30) => {
+    const today = new Date(); today.setHours(0,0,0,0)
+    return ingredients
+      .filter(i => i.expiryDate)
+      .map(i => {
+        const exp  = new Date(i.expiryDate); exp.setHours(0,0,0,0)
+        const diff = Math.round((exp - today) / (1000 * 60 * 60 * 24))
+        return { ...i, daysUntilExpiry: diff }
+      })
+      .filter(i => i.daysUntilExpiry <= days)
+      .sort((a, b) => a.daysUntilExpiry - b.daysUntilExpiry)
+  }, [ingredients])
+
   const value = {
-    ingredients, recipes, vendors, sales, purchaseOrders, stockCounts, customFields, notifications, vendorPrices,
+    ingredients, recipes, vendors, sales, purchaseOrders, stockCounts, customFields, notifications, vendorPrices, payments,
     recordSale, addIngredient, updateIngredient, deleteIngredient,
     addRecipe, updateRecipe, deleteRecipe,
     addVendor, updateVendor, deleteVendor,
     generatePurchaseOrder, approvePurchaseOrder, deletePurchaseOrder, receiveOrder,
     submitStockCount,
-    upsertVendorPrice, deleteVendorPrice, getCheapestVendor,
+    upsertVendorPrice, deleteVendorPrice, getCheapestVendor, getExpiringItems,
+    markPaymentPaid, unmarkPaymentPaid,
     addCustomField, updateCustomField, deleteCustomField,
     getVarianceData, getDashboardStats,
     markNotificationRead, addNotification,

@@ -26,13 +26,14 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-        sans:  ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans:  ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        gold:   '0 0 0 1px rgba(201, 168, 76, 0.3), 0 4px 16px rgba(201, 168, 76, 0.1)',
+        gold:      '0 0 0 1px rgba(201, 168, 76, 0.3), 0 4px 16px rgba(201, 168, 76, 0.1)',
         'gold-lg': '0 0 0 2px rgba(201, 168, 76, 0.4), 0 8px 32px rgba(0,0,0,0.12)',
-        card:   '0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04)',
+        card:      '0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04)',
+        glow:      'var(--card-glow)',
       }
     }
   },
